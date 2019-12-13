@@ -1,0 +1,36 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: tensquare-article #指定服务名
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.239.128:3306/tensquare_article?characterEncoding=utf-8
+    username: root
+    password: root
+  data:
+    mongodb:
+      database: commentdb
+      host: 192.168.239.128
+# Mybatis-Plus 配置
+mybatis-plus:
+#    mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.tensquare.article.pojo
+  global-config:
+    id-type: 1  #0:数据库ID自增   1:用户输入id
+    refresh-mapper: true #刷新mapper映射开关 调试神器
+    configuration:
+      map-underscore-to-camel-case: true #驼峰命名转换开关，开启后数据库字段带_的可以自动转换
+      cache-enabled: true #配置的缓存的全局开关
+      lazyLoadingEnabled: true #延时加载的开关
+      multipleResultSetsEnabled: true #开启延时加载，否则按需加载属性
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+redis:
+    host: 192.168.116.135
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
